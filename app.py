@@ -1,6 +1,6 @@
 from flask import Flask, send_file, render_template, request, jsonify
 import gensim
-import sumy
+# import sumy
 import nltk
 from nltk import word_tokenize, sent_tokenize
 import re
@@ -9,6 +9,8 @@ from gensim.summarization import summarize
 import PyPDF2
 import requests
 from bs4 import BeautifulSoup
+
+nltk.download('stopwords')
 
 app = Flask(__name__)
 
