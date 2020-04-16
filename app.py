@@ -12,8 +12,6 @@ from bs4 import BeautifulSoup
 
 # nltk.download('stopwords')
 
-app = Flask(__name__)
-
 stopwords = ['i','me','my','myself','we','our','ours','ourselves','you',"you're","you've","you'll","you'd",'your','yours','yourself','yourselves','he','him',
  'his','himself','she',"she's",'her','hers','herself','it',"it's",'its','itself','they','them','their','theirs','themselves','what','which',
  'who','whom','this','that',"that'll",'these','those','am','is','are','was','were','be','been','being','have','has','had','having','do','does','did',
@@ -73,6 +71,8 @@ def get_keywords(rawtext):
 
     keywords = [word for word in list(dict(sorted(word_frequencies.items(), key= lambda x:x[1], reverse=True)).keys()) if word.lower() not in stopwords and len(word) >= 3][:7]
     return keywords
+
+app = Flask(__name__)
 
 
 @app.route("/")
