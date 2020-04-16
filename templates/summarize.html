@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is the Summarization Page</h1>
+
+    {% if mode == "url-link" %}
+    <h5 style="color: black;">{{ summarized_text }}</h5><hr>
+    
+
+    {% elif mode == "raw-text" %}
+    <h5 style="color: black;">{{ summarized_text }}</h5>
+    
+
+    {% elif mode == "pdf" %}
+    {% for shit in summarized_text %}
+    <p>{{ shit }}</p>
+    {% endfor %}
+
+    {% endif %}
+    <h4 style="color: red;">{{ keywords }}</h4>
+    
+    <a href="#" onClick = "clip_div('copyme')">Test</a>
+<div id="copyme">Data that I want to copy</div>#
+
+
+<script>
+    function clip_text(a_string){
+    var input = document.createElement('input')
+    input.id="__copyText__";
+    input.value = a_string; // OOPS! document.getElementById(divId).innerText;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand("copy");
+    var txt = input.value
+    input.remove()
+    console.log("OK COPIED: '"+txt+"'")
+}
+function clip_div(divId){
+   return clip_text(document.getElementById(divId).innerText)
+}
+</script>
+
+
+</body>
+</html>
