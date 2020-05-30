@@ -31,6 +31,15 @@ def readPdf(file_upload):
         pdf_text = pageObj.extractText()
         content.append(pdf_text)
     return content
+   
+  
+def remove_newline(txt):
+    sentences = []
+    for i in txt.split():
+        if i == "\n":
+            continue
+        else: sentences.append(i.replace("[^a-zA-Z]", " "))
+    return " ".join(sentences)
 
 def fetch_from_url(url):
     page = requests.get(url).content
@@ -73,6 +82,8 @@ def get_keywords(rawtext):
     return keywords
 
 app = Flask(__name__)
+
+app.config['FILE_UPLOADS'] = './uploads'
 
 
 @app.route("/")
@@ -126,11 +137,15 @@ def summarize_text():
         elif mode == "pdf":
             try:
                 filename = file.filename
-                file.save(filename)
-                text = readPdf(filename)
+                file.save('./uploads/'+filename)
+                text = readPdf('./uploads/'+filename)
                 raw_text_length = [] ; summarized_text_length =[] ; summarized_text = []; dummy_kw = []
                 for pagefile in text:
-                    rtl,stl,st,k = gensim_summarize(pagefile)
+                    pagefile= remove_newline(pagefile)
+                    try:
+                        rtl,stl,st,k = gensim_summarize(pagefile)
+                    except:
+                        pass
                     raw_text_length.append(rtl)
                     summarized_text_length.append(stl)
                     summarized_text.append(st)
