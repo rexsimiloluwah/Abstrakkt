@@ -353,6 +353,16 @@
 function clip_div(divId){
    return clip_text(document.getElementById(divId).innerText)
 }
+    
+if (window.location.href.split("/").pop() === "summarize"){
+    $(document).ready(function () {
+    // Handler for .ready() called.
+    $('html, body').animate({
+        scrollTop: $('#get-started').offset().top
+    }, 'slow');
+});
+
+}
 </script>
 
 </body>
