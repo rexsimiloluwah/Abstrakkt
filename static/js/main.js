@@ -1,6 +1,4 @@
 $(function() {
-  
-    
     $(window).on('load', function(event) {
         $('.preloader').delay(500).fadeOut(500);
     });
@@ -138,32 +136,22 @@ tl.fromTo(
     ease: Power2.easeInOut }
 );
 
-// $(document).ready(function() {
-//     // Check if element is scrolled into view
-//     function isScrolledIntoView(elem) {
-//       var docViewTop = $(window).scrollTop();
-//       var docViewBottom = docViewTop + $(window).height();
-  
-//       var elemTop = $(elem).offset().top;
-//       var elemBottom = elemTop + $(elem).height();
-  
-//       return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-//     }
-//     // If element is scrolled into view, fade it in
-//     $(window).scroll(function() {
-//       $('.features-card.animated').each(function() {
-//         if (isScrolledIntoView(this) === true) {
-//           $(this).addClass('fadeInUp');
-//         }
-//       });
-//     });
-//   });
+let pdfDiv = document.getElementById('pdfDiv');
+let rawDiv = document.getElementById('rawDiv');
+let urlDiv = document.getElementById('urlDiv');
+let originalTime = document.getElementById('original_time');
+let summarizedTime = document.getElementById("summarized_time");
+let summarizedText= document.getElementById("summarized-text");
+const uploadedFile = document.getElementById("uploadedFile");
+const form = document.getElementById("form");
+const loader = document.querySelector(".loading");
+const summarized = document.querySelector(".summarized");
+const error = document.querySelector(".error")
 
-var fieldGroup = document.getElementById('fieldGroup')
-var pdfDiv = document.getElementById('pdfDiv')
-var rawDiv = document.getElementById('rawDiv')
-$('#fieldGroup').change( function(){
+let mode = null
 
+$('#mode').change( function(){
+    mode = $(this).val();
     if($(this).val() == "pdf"){
         pdfDiv.style.display = "block";
         rawDiv.style.display = "none";
@@ -173,12 +161,11 @@ $('#fieldGroup').change( function(){
         pdfDiv.style.display = "none";
     }
 });
-$("#fieldGroup").trigger("change");
+$("#mode").trigger("change");
 
-$('#fieldGroup').change( function(){
-
-    
-    if($(this).val() == "raw-text"){
+$('#mode').change( function(){
+    mode = $(this).val();
+    if($(this).val() == "raw_text"){
         pdfDiv.style.dislay = "none";
         rawDiv.style.display = "block";
         urlDiv.style.display = "none";
@@ -188,12 +175,11 @@ $('#fieldGroup').change( function(){
         rawDiv.style.display = "none";
     }
 });
-$("#fieldGroup").trigger("change");
+$("#mode").trigger("change");
 
-$('#fieldGroup').change( function(){
-
-    
-    if($(this).val() == "url-link"){
+$('#mode').change( function(){
+    mode = $(this).val();
+    if($(this).val() == "url"){
         pdfDiv.style.dislay = "none";
         rawDiv.style.display = "none";
         urlDiv.style.display = "block";
@@ -203,19 +189,11 @@ $('#fieldGroup').change( function(){
         urlDiv.style.display = "none";
     }
 });
-$("#fieldGroup").trigger("change");
+$("#mode").trigger("change");
 
-
-// File Upload Section
-console.log("Yes !");
-
-var fileLabel = document.getElementById("fileLabel");
-var fileInput = document.getElementById("file");
-var fileLabelInner = fileLabel.innerHTML
-
-console.log(fileLabelInner);
-
-console.log("shit")
+let fileLabel = document.getElementById("fileLabel");
+let fileInput = document.getElementById("fileInput");
+let fileLabelInner = fileLabel.innerHTML
 fileInput.addEventListener('change', function(e){
 var fileName = " ";
 fileName = e.target.value.split("fakepath").pop();
@@ -229,10 +207,114 @@ fileLabel.innerHTML = `<span style="font-size:10px;"> ${fileName} <span class='f
 
 function filesize(element){
     console.log(element.files[0].size)
-
     //Saving it as a cookie for accessibility in the Flask application
-    document.cookie = `filesize = ${element.files[0].size}`  //Using the string interpolation syntax in Javascript 
+    document.cookie = `filesize = ${element.files[0].size}`  
+}
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    /* Initialize XMLHTTPRequest */
+    let formData = new FormData();
+    summarized.style.display = "none";
+    loader.style.display = "block";
+    $("#keywords").empty()
+    $("#summarized-text").empty()
+    $(".error").empty()
+    let xhr = new XMLHttpRequest();
+    switch(mode){
+        case "raw_text":
+        case "url":
+            const data = {raw_text : e.target.rawText.value, url : e.target.url.value}
+            xhr.open('POST', `/summarize?mode=${mode}`, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            console.log(data)
+            xhr.onreadystatechange = function() { 
+                console.log("Loading")
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    console.log("Done")
+                }
+            }
+
+            xhr.onload = function () {
+                const response = JSON.parse(this.responseText);
+                console.log(this.status)
+                loader.style.display = "none"
+
+                if(this.status === 200){
+                    summarized.style.display = "block"
+                    originalTime.innerText = `${response.original_reading_time} MINS`;
+                    summarizedTime.innerText = `${response.reading_time} MINS`;
+                    summarizedText.innerHTML = `<p>${response.summarized_text}</p>`;
+                    
+                    response.keywords.forEach(keyword => {
+                        $("#keywords").append(`<p><span class = 'text--rebecca'>${keyword.word} :-</span> ${keyword.definition}</p>`)
+                    })
+                    console.log(response)
+                }
+                else{
+                    error.style.display = "block"
+                    error.innerHTML = `<p><i class="fa fa-exclamation-circle"></i> ${response.error}</p>`
+                    console.log(response)
+                }
+            }
+            /* POST THE DATA */
+            xhr.send(JSON.stringify(data));
+            break;
+        case "pdf":
+            let formData = new FormData();
+            let file = fileInput.files[0];
+            /* VALIDATION PROCESS - Check File Type and Size */
+            if (!file.type.match('pdf.*')) {
+                console.log("Only pdf files are allowed for now.")
+            }
+
+            // If file size is greater than 3MB, Do not process [Can be modified]
+            if(file.size > 10 * 1024 * 1024){
+                console.log("File size is too large to process.")
+            }
+            
+            /* Add the file to the form for the AJAX request */
+            formData.append('file', file);
+            let f = {}
+            for (let pair of formData.entries()){
+                console.log(pair[0], pair[1])
+            }
+            xhr.open('POST', '/summarize/upload', true);
+            xhr.onreadystatechange = function() { 
+                console.log("Loading")
+                loader.style.display = "none"
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    console.log("Done")
+                }
+            }
+            xhr.onload = function(){
+                const response = JSON.parse(this.responseText);
+                console.log(this.status)
+                if(this.status === 200){
+                    summarized.style.display = "block"
+                    originalTime.innerText = `${response.original_reading_time} MINS`;
+                    summarizedTime.innerText = `${response.reading_time} MINS`;
+                    response.summarized_pages.forEach(page => {
+                        $("#summarized-text").append(`<div><h6 class = "text--rebecca">PAGE :- ${page.page + 1}</h6> <p>${page.summarized_text}</p></div>`)
+                    })
+                    response.keywords.forEach(keyword => {
+                        $("#keywords").append(`<p><span class = 'text--rebecca'>${keyword.word} :-</span> ${keyword.definition}</p>`)
+                    })
+                    console.log(response)
+                }
+                else{
+                    error.style.display = "block"
+                    error.innerHTML = `<p><i class="fa fa-exclamation-circle"></i> ${response.error}</p>`
+                    console.log(response)
+                }
+            }
+
+            /* POST THE DATA */
+            xhr.send(formData);
+        default: 
+            break;
     }
+})
 
 
   

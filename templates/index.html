@@ -1,89 +1,36 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{% extends 'base.html' %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@1,300&family=Julius+Sans+One&family=Pacifico&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
-    <link rel="stylesheet" href="../../static/css/style.css">
-    
-    <link rel = "icon" href =  
-    "../../static/images/cutting.png" 
-            type = "image/x-icon">
-    <style>
-        .bg-gradient {
-    background-image: url('../../static/images/particle-bg.png');
-    position: relative;
-    border-bottom: 2px solid transparent;
-    border-radius: 0 0 30px 30px;
-    
-}
-    </style>
-    <title>ABSTRAKKT</title>
-</head>
+{% block body %}
+<div class="nav-menu fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-dark navbar-expand-lg ">
+                <a class="navbar-brand" href="index.html"><span style="font-family: 'Julius Sans One', sans-serif;">ABSTRAKKT <span class="fa fa-scissors"></span></span></a> 
+                    
+                <button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#navbar"
+                    aria-controls="navbarSupportedContent20" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="animated-icon1"><span></span><span></span><span></span></div>
+                </button>
 
-
-<body data-spy="scroll" data-target=".navbar" data-offset="50" data-aos-easing="ease-in-out" data-aos-duration="5000" data-aos-delay="600">
-
-    <!--====== PRELOADER PART START ======-->
-
-    <div class="preloader">
-        <div class="loader">
-            <div class="ytp-spinner">
-                <div class="ytp-spinner-container">
-                    <div class="ytp-spinner-rotator">
-                        <div class="ytp-spinner-left">
-                            <div class="ytp-spinner-circle"></div>
-                        </div>
-                        <div class="ytp-spinner-right">
-                            <div class="ytp-spinner-circle"></div>
-                        </div>
+                
+                    <div class="collapse navbar-collapse" id="navbar">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item"> <a class="nav-link active" href="#home">HOME <span class="sr-only">(current)</span></a> </li>
+                            <li class="nav-item"> <a class="nav-link" href="#features">APIs</a> </li>
+        
+                            <li class="nav-item inline-icons">
+                                <a href="twitter.com/Rexidic" class="nav-link"><span class="fa fa-twitter-square"></span></a>
+                                <a href="#" class="nav-link"><span class="fa fa-linkedin-square"></span></a>
+                                <a href="#" class="nav-link"><span class="fa fa-medium"></span></a>
+                            </li>
+                            <li class="nav-item"><a href="#get-started" class="btn btn-outline-light my-2 my-sm-0 ml-lg-3" style="cursor: pointer;">Get Started</a></li>
+                        </ul>
                     </div>
-                </div>
+                </nav>
             </div>
         </div>
-
-        <!-- <h1 style="position:absolute;top:57%;left:45%;display:none;">Abstrakkt</h1> -->
     </div>
-
-    <!--====== PRELOADER PART ENDS ======-->
-
-    
-    <div class="nav-menu fixed-top">
-      <div class="container">
-          <div class="row">
-              <div class="col-md-12">
-                  <nav class="navbar navbar-dark navbar-expand-lg ">
-                    <a class="navbar-brand" href="index.html"><span style="font-family: 'Julius Sans One', sans-serif;">ABSTRAKKT <span class="fa fa-scissors"></span></span></a> 
-                      
-                      <button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#navbar"
-                      aria-controls="navbarSupportedContent20" aria-expanded="false" aria-label="Toggle navigation">
-                      <div class="animated-icon1"><span></span><span></span><span></span></div>
-                    </button>
-
-                    
-                      <div class="collapse navbar-collapse" id="navbar">
-                          
-                          <ul class="navbar-nav ml-auto">
-                              <li class="nav-item"> <a class="nav-link active" href="#home">HOME <span class="sr-only">(current)</span></a> </li>
-                              <li class="nav-item"> <a class="nav-link" href="#features">FEATURES</a> </li>
-           
-                              <li class="nav-item inline-icons">
-                                  <a href="twitter.com/Rexidic" class="nav-link"><span class="fa fa-twitter-square"></span></a>
-                                  <a href="#" class="nav-link"><span class="fa fa-linkedin-square"></span></a>
-                                  <a href="#" class="nav-link"><span class="fa fa-medium"></span></a>
-                              </li>
-                              <li class="nav-item"><a href="#get-started" class="btn btn-outline-light my-2 my-sm-0 ml-lg-3" style="cursor: pointer;">Get Started</a></li>
-                          </ul>
-                      </div>
-                  </nav>
-              </div>
-          </div>
-      </div>
   </div>
 
 
@@ -119,41 +66,41 @@
 
       <div class="container">
           <div class="row">
-                    <!-- Card -->
-                    <div class="col-md-4">
-                    <div class="card features-card animated fadeInUp">
-                    <div class="card-image" style="display: flex;justify-content: center; margin-top: 20px;">
-                        <img src="../../static/images/cutting.png" alt="alternative" width="80px" height="80px"></div>
-                        <div class="card-body text-center"> 
-                            <h4 class="card-title">Summarize Text Files & Documents </h4><hr>
-                            <p>Summarize Text files and Documents efficiently, applying NLP-based Machine learning Algorithms and Reduce Reading time.</p>
-                        </div>
-                    </div></div>
-                    <!-- end of card -->
+            <!-- Card -->
+            <div class="col-md-4">
+            <div class="card features-card animated fadeInUp">
+            <div class="card-image" style="display: flex;justify-content: center; margin-top: 20px;">
+                <img src="../../static/images/cutting.png" alt="alternative" width="80px" height="80px"></div>
+                <div class="card-body text-center"> 
+                    <h4 class="card-title">Summarize Text Files & Documents </h4><hr>
+                    <p>Summarize Text files and Documents efficiently, applying NLP-based Machine learning Algorithms and Reduce Reading time.</p>
+                </div>
+            </div></div>
+            <!-- end of card -->
 
-                    <!-- Card -->
-                    <div class="col-md-4">
-                    <div class="card features-card animated fadeInUp">
-                    <div class="card-image" style="display: flex;justify-content: center; margin-top: 20px;">
-                        <img src="../../static/images/file.png" alt="alternative" width="80px" height="80px"></div>
-                        <div class="card-body text-center">
-                            <h4 class="card-title">Extract Keywords and Phrases</h4><hr>
-                            <p>Automatically Extract keywords and phrases that best describe the Document, to preserve relevant contextual Information.</p>
-                        </div>
-                    </div></div>
-                    <!-- end of card -->
+            <!-- Card -->
+            <div class="col-md-4">
+            <div class="card features-card animated fadeInUp">
+            <div class="card-image" style="display: flex;justify-content: center; margin-top: 20px;">
+                <img src="../../static/images/file.png" alt="alternative" width="80px" height="80px"></div>
+                <div class="card-body text-center">
+                    <h4 class="card-title">Extract Keywords and Phrases</h4><hr>
+                    <p>Automatically Extract keywords and phrases that best describe the Document, to preserve relevant contextual Information.</p>
+                </div>
+            </div></div>
+            <!-- end of card -->
 
-                    <!-- Card -->
-                    <div class="col-md-4">
-                    <div class="card features-card animated fadeInUp">
-                        <div class="card-image" style="display: flex;justify-content: center; margin-top: 20px;">   
-                        <img src="../../static/images/bar-chart.png" alt="alternative" width="80px" height="80px"></div>
-                        <div class="card-body text-center">
-                            <h4 class="card-title">Compare and Evaluate Different Models</h4><hr>
-                            <p>Compare the performace of various NLP-based algorithms and select the model which suits your reading preferences effectively.</p>
-                        </div>
-                    </div></div>
-                    <!-- end of card -->
+            <!-- Card -->
+            <div class="col-md-4">
+            <div class="card features-card animated fadeInUp">
+                <div class="card-image" style="display: flex;justify-content: center; margin-top: 20px;">   
+                <img src="../../static/images/bar-chart.png" alt="alternative" width="80px" height="80px"></div>
+                <div class="card-body text-center">
+                    <h4 class="card-title">Compare and Evaluate Different Models</h4><hr>
+                    <p>Compare the performace of various NLP-based algorithms and select the model which suits your reading preferences effectively.</p>
+                </div>
+            </div></div>
+            <!-- end of card -->
               
           </div>
       </div>
@@ -177,128 +124,97 @@
 
             <div class="col-md-8" >
            
-            <form action="/summarize" method ='POST' enctype="multipart/form-data">
+            <form id="form" class="form">
 
                 <div class="form-group">
-                <select class="form-control" id="fieldGroup" name="documentMode">
-                    <option value="raw-text">Enter Raw Text</option>
+                <select class="form-control" id="mode" name="mode">
+                    <option value="raw_text">Enter Raw Text</option>
                     <option value="pdf">Upload PDF Document</option>
-                    <option value="url-link">Enter URL Link</option>
-              </select></div>
+                    <option value="url">Enter URL Link</option>
+                </select></div>
 
                 <div class="form-group" id="pdfDiv" style="display:none;">
                     <div class="row">
                         <div class="col-12">
-                    <input type="file" oninput = "filesize(this)" accept=".pdf" name="file" class="fileInput" id="file" >
-            <label id="fileLabel" class="fileLabel" for="file">Upload the File<span class="fa fa-upload" style="margin-left: 15px;margin-top: auto;margin-bottom: auto;"></span></label>
-                <hr><button type="submit" class="btn btn-summarize">Summarize <i class="fa fa-scissors"></i></button>
-           </div></div></div>
+                    <input type="file" accept=".pdf" name="file" class="fileInput" id="fileInput"/>
+                    <label id="fileLabel" class="fileLabel" for="fileInput">Upload the File<span class="fa fa-upload" style="margin-left: 15px;margin-top: auto;margin-bottom: auto;"></span></label>
+                    <hr>
+                    <button type="submit" class="btn btn-summarize">Summarize <i class="fa fa-scissors"></i></button>
+                </div>
+                </div></div>
            
-           <div class="form-group" id="rawDiv" style="display:none;">
-            <div class="row">
-                <div class="col-12">
-                
-        <textarea type="text" class="form-control w-100" id="raw-text" name="raw-text" placeholder="Please Type in Raw text you wish to summarize ( Minimum of 30 words)" style="height: 200px;" ></textarea>
-        <hr><button type="submit" class="btn btn-summarize draw-border">Summarize <i class="fa fa-scissors"></i></button>
-   </div></div></div>
+                <div class="form-group" id="rawDiv" style="display:none;">
+                    <div class="row">
+                        <div class="col-12">
+                        
+                        <textarea type="text" class="form-control w-100" id="raw-text" name="rawText" placeholder="Please Type in Raw text you wish to summarize ( Minimum of 30 words)" style="height: 200px;" ></textarea>
+                        <hr><button type="submit" class="btn btn-summarize draw-border">Summarize <i class="fa fa-scissors"></i></button>
+                    </div>
+                </div></div>
 
-    <div class="form-group" id="urlDiv" style="display:none;">
-    <div class="row">
-        <div class="col-12">
-    <input type="text" class="form-control w-100" id="urllink" name="urllink" placeholder="Please Enter the URL Link to the page you wish to Summarize" style="margin-top: 20px;">
-    <hr><button type="submit" class="btn btn-summarize">Summarize <i class="fa fa-scissors"></i></button>
-</div></div></div>
-
-
-   </form></div>
+                <div class="form-group" id="urlDiv" style="display:none;">
+                <div class="row">
+                    <div class="col-12">
+                    <input type="text" class="form-control w-100" id="url" name="url" placeholder="Please Enter the URL Link to the page you wish to Summarize" style="margin-top: 20px;">
+                    <hr>
+                    <button type="submit" class="btn btn-summarize">Summarize <i class="fa fa-scissors"></i></button>
+                </div>
+                </div></div>
+            </form>
+    </div>
    <div class="col-md-2"></div>
 
-</div></div>
-    
-</div>
-
-</div>
+    </div></div>
+    </div>
+    </div>
   </section>
-
-  {% if summarized_text %}
 
   <section class="summarized">
     <div class="container">
-        <div class="card card-pricing" style="border: 1px solid rgb(206, 201, 218); border-radius: 0 0 20px 20px;margin-top: -50px;padding: 15px 15px;">
-            <p style="color: rgb(58,19,158);font-family: 'Julius Sans One', sans-serif;font-size:15px;"><span class="fa fa-clock-o"></span>
-                
-                <span>   Reading Time</span> :- 
-                <span style="text-decoration:line-through; color: crimson;letter-spacing:3px;font-weight: bold;">{{ prev_reading_time }} mins</span>
-                <span style="color: springgreen; letter-spacing: 3px;">{{ reading_time }} mins</span></p>
-            <hr style="margin-top: -5px;">
+        <div class="card card-summarize">
+            <p style="color: rgb(58,19,158);font-family: 'Julius Sans One', sans-serif;font-size:15px;">
+                <span class="fa fa-clock-o"></span>
+                <span> Reading Time</span> :- 
+                <span class="original-time" id="original_time"></span>
+                <span class="summarized-time" id ="summarized_time"></span>
+            </p>
+            <hr style="margin-top: -5px;" />
 
             <div class="container" id="summarized-container" style="border: 1px solid rgb(58,19,158); border-radius: 20px;">
-            <p style="color: rgb(58,19,158);font-family:'Julius Sans One', sans-serif;margin: 12px 0px auto auto;font-weight:bold;">Summarized Text :- </p><hr>
-           
-        {% if mode == "pdf" %}
-            {% for text in summarized_text %}
-            <p style="color: rgb(58,19,158);font-family:'Julius Sans One', sans-serif;font-weight:bold;">Page {{ summarized_text.index(text)+1 }}</p>
-            <p>{{ text }}</p>
-            {% endfor %}
-        
-        {% else %}
-        {{ summarized_text }}
+            <p class="text--rebecca">Summarized Text :- </p><hr>
+            <div class = "summarized-text" id = "summarized-text">
 
-            {% endif %}
-    {% if keydef %}
-    <p style="color: rgb(58,19,158);font-family:'Julius Sans One', sans-serif;font-weight:bold;border:2px solid rgb(58,19,158);padding: 8px 12px;margin-top:7px;">Keywords</p>
-    
-    {% for word,def in keydef.items() %}
-    <p><span style="font-family:'Julius Sans One', sans-serif;font-weight:bold;">{{ word.upper() }}</span> : {{ def }}</p>
-    {% endfor %}
-    {% endif %}
-    
-
-    {% else %}
-    <div class="container">
-        <div class="card card-pricing" style="border: 1px solid rgb(206, 201, 218); border-radius: 0 0 20px 20px;margin-top: -50px;margin-bottom:20px;padding: 15px 15px;">
-    <span style="color:crimson;padding: 12px;">{{ text }} </span>
-    </div></div>
-    {% endif %}
-
-    
-    
-
-    
             </div>
-        
-    
-       
-        </div>
-        
-  </section>
+            <p class="text--rebecca">Keywords</p>
+            <div class="card card-summarize">
+                <div class = "keywords" id = "keywords">
 
-    {% if summarized_text %}
-    
-    
-    <div class="container" style="margin-top: -50px; margin-bottom: 20px; padding-left: 30px;" class="animated fadeInLeft">
-        <button class="btn btn-summarize" onClick="clip_div('summarized-container')">Copy Text <span class="fa fa-clipboard"></span></button>
-        <span style="margin: auto 3px;" ></span>
-        <button class="btn btn-summarize">Download PDF <span class="fa fa-download"></span></button></div>
-      
-      <div class="container">
-          <p style="color: crimson">Not Satisfied ?. Try out these more Advanced Text Summarizers for Free </p>
-          
-          <ul style="list-style-type: none;"> 
-              <li><a style="color: limegreen;" href = "http://freesummarizer.com/">Free-Summarizer</a></li>
-              <li><a style="color: rebeccapurple;" href = "http://textsummarization.net/text-summarizer">Text-Summarization</a></li>
-              <li><a style="color: royalblue;" href = "https://www.textcompactor.com/">TextCompactor</a></li>
-              <li><a style="color: tomato;" href = "https://smmry.com/">Smmry</a></li>
-          </ul>
-      </div>
+                </div>
+            </div>  
+            
+            <div class="container" style="margin: 1rem auto;" class="animated fadeInLeft">
+                <button class="btn btn-summarize" onClick="clip_div('summarized-container')">Copy Text <span class="fa fa-clipboard"></span></button>
+                <span style="margin: auto 3px;" ></span>
+                <button class="btn btn-summarize">Download PDF <span class="fa fa-download"></span></button></div>
+              
+              <div class="container">
+                  <p style="color: crimson">Not Satisfied 😥😩?. Try out these more Advanced Text Summarizers for Free </p>
+                  
+                  <ul style="list-style-type: none;"> 
+                      <li><a style="color: limegreen;" href = "http://freesummarizer.com/">Free-Summarizer</a></li>
+                      <li><a style="color: rebeccapurple;" href = "http://textsummarization.net/text-summarizer">Text-Summarization</a></li>
+                      <li><a style="color: royalblue;" href = "https://www.textcompactor.com/">TextCompactor</a></li>
+                      <li><a style="color: tomato;" href = "https://smmry.com/">Smmry</a></li>
+                  </ul>
+              </div>
+        </section>
+
+        <div class="error"></div>
+        
+        <div class="loading"></div>
+
+
     </div>
-    
-    {% endif %}
-
-    
-
-  
-
 
    <!-- footer section -->
    <footer>
@@ -317,53 +233,8 @@
           <a href="#"><i class="fa fa-twitter fa-2x social"></i></a>
           
       </div><br>
-      
     </div>
 </footer>
-
 <!--end of footer section -->
 
-
-
-    
-
-
-    
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-<script src="../../static/js/jquery-1.12.4.min.js"></script>
-<script src="../../static/js/modernizr-3.7.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js" integrity="sha256-3arngJBQR3FTyeRtL3muAGFaGcL8iHsubYOqq48mBLw=" crossorigin="anonymous"></script>
-<script src="../../static/js/main.js"></script>
-
-<script>
-    function clip_text(a_string){
-    var input = document.createElement('input')
-    input.id="__copyText__";
-    input.value = a_string; // OOPS! document.getElementById(divId).innerText;
-    document.body.appendChild(input);
-    input.select();
-    document.execCommand("copy");
-    var txt = input.value
-    input.remove()
-    console.log("OK COPIED: '"+txt+"'")
-}
-function clip_div(divId){
-   return clip_text(document.getElementById(divId).innerText)
-}
-    
-if (window.location.href.split("/").pop() === "summarize"){
-    $(document).ready(function () {
-    // Handler for .ready() called.
-    $('html, body').animate({
-        scrollTop: $('#get-started').offset().top
-    }, 'slow');
-});
-
-}
-</script>
-
-</body>
-</html>
+{% endblock %}
