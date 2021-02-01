@@ -244,7 +244,11 @@ form.addEventListener("submit", (e) => {
                     summarized.style.display = "block"
                     originalTime.innerText = `${response.original_reading_time} MINS`;
                     summarizedTime.innerText = `${response.reading_time} MINS`;
-                    summarizedText.innerHTML = `<p>${response.summarized_text}</p>`;
+
+                    response.summarized_text.split(".").forEach(sentence => {
+                        $("#summarized-text").append(`<p>${sentence}</p>`)
+                    })
+                    // summarizedText.innerHTML = `<p>${response.summarized_text}</p>`;
                     
                     response.keywords.forEach(keyword => {
                         $("#keywords").append(`<p><span class = 'text--rebecca'>${keyword.word} :-</span> ${keyword.definition}</p>`)
